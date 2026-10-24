@@ -1,22 +1,36 @@
 /* ==================================================
-   页面样式文件
-   说明：定义页面布局及基础样式，支持暗黑模式
+   扬帆云（YFCloud）- 子页面「深海航行」极简深色未来感样式
    ================================================== */ 
 
 :root {
-  --page-max: 880px;
-  --page-text: #212529;
-  --page-muted: #6c757d;
-  --page-link: #0d6efd;
-  --page-surface: #ffffff;
-  --page-border: #e6edf5;
-  --page-shadow: 0 12px 32px rgba(13,110,253,0.08);
+  --page-max: 860px;
+  --bg-deep: #06080F;
+  --page-surface: rgba(13, 22, 41, 0.82);
+  --page-border: rgba(0, 242, 254, 0.16);
+  --primary-cyan: #00F2FE;
+  --electric-blue: #38BDF8;
+  --page-text: #F8FAFC;
+  --page-muted: #94A3B8;
+  --page-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.1);
 }
 
 body {
-  font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
-  background: linear-gradient(180deg, #f7f9fc 0%, #eef2f6 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.1) 0%, transparent 60%),
+    linear-gradient(180deg, #06080F 0%, #090E1B 100%);
+  background-attachment: fixed;
   color: var(--page-text);
+  line-height: 1.75;
+}
+
+/* 顶部导航 */
+.navbar {
+  background: rgba(6, 8, 15, 0.85) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--page-border) !important;
 }
 
 .page-wrap {
@@ -26,15 +40,20 @@ body {
 
 .page-card {
   background: var(--page-surface);
-  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
   border: 1px solid var(--page-border);
   box-shadow: var(--page-shadow);
+  color: var(--page-text);
 }
 
 .page-title {
   font-weight: 700;
   letter-spacing: 0.4px;
-  color: #0d6efd;
+  background: linear-gradient(135deg, #FFFFFF 0%, #00F2FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .page-meta {
@@ -43,95 +62,63 @@ body {
 
 .page-divider {
   height: 1px;
-  background: var(--page-border);
+  background: rgba(0, 242, 254, 0.15);
 }
 
-.page-footer a {
-  color: var(--page-link);
+.page-card h2, 
+.page-card h3, 
+.page-card h4 {
+  color: #FFFFFF;
+}
+
+.page-card p, 
+.page-card li {
+  color: var(--page-muted);
+}
+
+.page-card a {
+  color: var(--primary-cyan);
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.page-footer a:hover {
+.page-card a:hover {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px var(--primary-cyan);
   text-decoration: underline;
 }
-/* ==================================================
-   暗黑模式样式
-   ================================================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page-text: #e8eaed;
-    --page-muted: #93b4ef;
-    --page-link: #6ea8fe;
-    --page-surface: #232528;
-    --page-border: #3a3d42;
-    --page-shadow: 0 12px 32px rgba(0,0,0,0.35);
-  }
 
-  .navbar-brand img[src$="logo.png"] {
-    content: url("../images/logo-dark.png");
-  }
+.btn-primary {
+  background: linear-gradient(135deg, #00F2FE 0%, #0284C7 100%);
+  border: none;
+  color: #06080F;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+  border-radius: 0.6rem;
+}
 
-  body {
-    background: linear-gradient(180deg, #181a1b 0%, #1a1c1e 100%);
-    color: var(--page-text);
-  }
+.btn-primary:hover {
+  color: #000;
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
+  transform: translateY(-2px);
+}
 
-  .page-card {
-    background: var(--page-surface);
-    border-color: var(--page-border);
-  }
+.btn-outline-primary {
+  background: rgba(13, 22, 41, 0.6);
+  border: 1px solid var(--primary-cyan);
+  color: var(--primary-cyan);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
 
-  .page-title {
-    color: #6ea8fe;
-  }
+.btn-outline-primary:hover {
+  background: rgba(0, 242, 254, 0.15);
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
 
-  .page-meta {
-    color: var(--page-muted);
-  }
-
-  .page-divider {
-    background: var(--page-border);
-  }
-
-  .page-footer a {
-    color: var(--page-link);
-  }
-
-  /* 链接颜色 */
-  a {
-    color: var(--page-link);
-  }
-
-  a:hover {
-    color: #8bb9fe;
-  }
-
-  /* 按钮样式 */
-  .btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-    color: #fff;
-  }
-
-  .btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
-  }
-
-  /* 导航栏暗黑模式 */
-  .navbar {
-    background-color: #232528 !important;
-    border-bottom: 1px solid var(--page-border);
-  }
-
-  .btn-outline-primary {
-    color: #6ea8fe;
-    border-color: #6ea8fe;
-  }
-
-  .btn-outline-primary:hover {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-    color: #fff;
-  }
+footer.bg-dark {
+  background: #04060A !important;
+  border-top: 1px solid var(--page-border);
+  color: var(--page-muted) !important;
 }

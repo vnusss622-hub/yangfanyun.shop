@@ -1,465 +1,616 @@
 /* ==================================================
-   首页样式文件
-   说明：首页、登录页、注册页、产品页、价格页、FAQ页、用户评价页等全局样式
-   ================================================== */  
+   扬帆云（YFCloud）- 「深海航行」极简深色未来感样式表
+   Deep-Sea Cyber Tech Theme (Dark Futuristic Edition)
+   ================================================== */
 
 /* ===========================
-   全局变量定义
+   设计系统与色彩变量
    =========================== */
 :root {
-  --main-bg: #fff;
-  --card-bg: #fff;
-  --text-main: #212529;
-  --text-secondary: #6c757d;
-  --primary: #0d6efd;
-  --success: #198754;
-  --info: #0dcaf0;
-  --footer-bg: #222;
-  --radius-main: 0.375rem;
+  --bg-deep: #06080F;              /* 深渊黑底色 */
+  --bg-surface: #0B1120;           /* 深海蓝基底 */
+  --bg-card: rgba(13, 22, 41, 0.75); /* 深海玻态卡片 */
+  --bg-card-hover: rgba(18, 30, 56, 0.9);
+  --border-subtle: rgba(0, 242, 254, 0.14);
+  --border-glow: rgba(0, 242, 254, 0.4);
+  --primary-cyan: #00F2FE;         /* 荧光青碧主光色 */
+  --primary-blue: #0284C7;         /* 极深海蓝 */
+  --electric-blue: #38BDF8;        /* 电光天蓝 */
+  --accent-emerald: #10B981;       /* 信号绿 */
+  --accent-gold: #F59E0B;          /* 推荐金 */
+  --text-primary: #F8FAFC;         /* 耀白主文本 */
+  --text-secondary: #94A3B8;       /* 幽蓝次级文本 */
+  --text-muted: #64748B;           /* 弱化文本 */
+  --glow-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
 }
 
 /* ===========================
-   基础全局样式
+   全局基础重置与背景设定
    =========================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
-  background: var(--main-bg);
-  color: var(--text-main);
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 85% 35%, rgba(2, 132, 199, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 15% 75%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+    linear-gradient(180deg, #06080F 0%, #080D1A 50%, #06080F 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  overflow-x: hidden;
+  line-height: 1.65;
 }
 
-/* 全局区块样式 */
-section {
-  background: transparent;
+/* 霓虹渐变文本 */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E0F2FE 40%, #00F2FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* 卡片样式 */
-.card {
-  background: var(--card-bg);
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00F2FE 0%, #38BDF8 50%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.card-body .display-5 {
-  margin-bottom: 1.5rem !important; 
+.text-cyan {
+  color: var(--primary-cyan) !important;
 }
 
-/* 标题样式 */
-.text-secondary {
+.text-cyan-light {
+  color: var(--electric-blue) !important;
+}
+
+.text-secondary-cyan {
   color: var(--text-secondary) !important;
 }
 
-/* 导航菜单基础样式及点击动效 */
-.navbar-light .nav-link {
-  transition: all 0.18s;
-  border-radius: var(--radius-main);
-}
-.navbar-light .nav-link:hover,
-.navbar-light .nav-link:focus,
-.navbar-light .nav-link:active {
-  color: #0d6efd;
-  background-color: #f0f7ff;
-  text-decoration: none;
-}
-
-/* 按钮基础动效（含注册、登录、立即使用等所有按钮） */
-.btn,
-.btn-primary,
-.btn-outline-primary,
-.btn-light {
-  transition: all 0.2s;
-  border-radius: var(--radius-main);
+/* ===========================
+   深海悬浮导航栏
+   =========================== */
+.navbar-cyber {
+  background: rgba(6, 8, 15, 0.82) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+  z-index: 1030;
 }
 
-/* Pricing card */
-.pricing-card {
+.navbar-cyber .navbar-brand img {
+  filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.35));
+  transition: transform 0.25s ease;
+}
+
+.navbar-cyber .navbar-brand:hover img {
+  transform: scale(1.04);
+}
+
+.navbar-cyber .nav-link {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
   position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
 }
-.badge-recommend {
+
+.navbar-cyber .nav-link:hover,
+.navbar-cyber .nav-link:focus {
+  color: var(--primary-cyan) !important;
+  background: rgba(0, 242, 254, 0.08);
+}
+
+.navbar-cyber .nav-link::after {
+  content: "";
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #ffc107;
-  color: #222;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-.recommended {
-  transform: scale(1.02);
-  box-shadow: 0 1rem 2rem rgba(0, 128, 0, 0.08);
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 18px;
+  height: 2px;
+  background: var(--primary-cyan);
+  box-shadow: 0 0 8px var(--primary-cyan);
+  transition: transform 0.2s ease;
+  border-radius: 2px;
 }
 
-/* FAQ accordion */
-.faq-accordion .accordion-item {
-  border: none;
-  border-radius: 1rem;
-  box-shadow: 0 4px 18px rgba(13,110,253,0.05);
-  margin-bottom: 1rem;
-  overflow: hidden;
-}
-.faq-accordion .accordion-button {
-  font-weight: 600;
-  background: #f5f8ff;
-}
-.faq-accordion .accordion-button:not(.collapsed) {
-  color: #0d6efd;
-  background: #e7f1ff;
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
-}
-.faq-accordion .accordion-body {
-  background: #fff;
-  line-height: 1.7;
-  color: #495057;
+.navbar-cyber .nav-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .navbar-brand img[src$="logo.png"] {
-    content: url("../images/logo-dark.png");
-  }
+/* 移动端汉堡按钮 */
+.navbar-cyber .navbar-toggler {
+  border: 1px solid var(--border-subtle);
+  background: rgba(13, 22, 41, 0.6);
+  color: var(--primary-cyan);
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.5rem;
+}
 
-  .faq-accordion .accordion-button {
-    background: #2c2f33;
-    color: #d7e3ff;
-  }
-  .faq-accordion .accordion-button:not(.collapsed) {
-    background: #1f5bd8;
-    color: #fff;
-  }
-  .faq-accordion .accordion-body {
-    background: #1f2226;
-    color: #cfd5df;
-  }
+.navbar-cyber .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.25);
+}
+
+.navbar-cyber .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 242, 254, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* 移动端抽屉菜单 */
+.offcanvas-cyber {
+  background: #090E1A !important;
+  border-left: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.offcanvas-cyber .offcanvas-header {
+  border-bottom: 1px solid rgba(0, 242, 254, 0.12);
+}
+
+.offcanvas-cyber .btn-close {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* ===========================
-   暗黑模式配色与样式
+   按钮系统（未来感赛博光效）
    =========================== */
-@media (prefers-color-scheme: dark) {
-  /* 暗黑模式变量 */
-  :root {
-    --main-bg: #181a1b;
-    --card-bg: #232528;
-    --text-main: #ececec;
-    --text-secondary: #93b4ef;
-    --primary: #3784ff;
-    --success: #4cd964;
-    --info: #5bc0de;
-    --footer-bg: #151618;
-    --radius-main: 0.375rem;
-  }
+.btn-cyber-primary {
+  background: linear-gradient(135deg, #00F2FE 0%, #0284C7 100%);
+  color: #06080F !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
 
-  body {
-    background: var(--main-bg);
-    color: var(--text-main);
-  }
+.btn-cyber-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.6), 0 4px 15px rgba(2, 132, 199, 0.4);
+  color: #000 !important;
+}
 
-  /* 常用区块统一暗色背景/文字/边框/按钮 */
-  .card,
-  section,
-  .navbar,
-  .bg-light,
-  .navbar-light,
-  .shadow-sm,
-  .border-0,
-  .border-primary,
-  .border-success,
-  .border-info {
-    background: var(--card-bg) !important;
-    color: var(--text-main) !important;
-    border-color: #222 !important;
-  }
+.btn-cyber-outline {
+  background: rgba(13, 22, 41, 0.6);
+  border: 1px solid var(--primary-cyan);
+  color: var(--primary-cyan) !important;
+  font-weight: 600;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.12);
+  transition: all 0.25s ease;
+}
 
-  /* 文字色 */
-  .text-primary {
-    color: #3784ff !important;
-  }
-  .text-secondary {
-    color: var(--text-secondary) !important;
-  }
-  .text-success {
-    color: #4cd964 !important;
-  }
-  .text-info {
-    color: #5bc0de !important;
-  }
+.btn-cyber-outline:hover {
+  background: rgba(0, 242, 254, 0.15);
+  color: #FFF !important;
+  box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+  transform: translateY(-2px);
+}
 
-  /* 标题统一高亮 */
-  .display-4,
-  .display-5,
-  .fw-bold,
-  h1,
-  h2,
-  h5,
-  h4,
-  h3 {
-    color: #ececec !important;
-  }
+.btn-cyber-glow {
+  background: linear-gradient(135deg, #00F2FE 0%, #38BDF8 50%, #0284C7 100%);
+  color: #050B17 !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.45);
+  transition: all 0.25s ease;
+  position: relative;
+}
 
-  /* 主要色块 */
-  .bg-primary {
-    background: #232528 !important;
-    color: #ececec !important;
-  }
+.btn-cyber-glow:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 40px rgba(0, 242, 254, 0.75);
+  color: #000 !important;
+}
 
-  .bg-light {
-    background: #232528 !important;
-    color: #ececec !important;
-  }
+/* ===========================
+   首屏视觉区（Hero Section）
+   =========================== */
+.hero-cyber {
+  padding: 6rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
 
-  /* 统一阴影与边框 */
-  .border-0 {
-    border: none !important;
-  }
-  .shadow-sm {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
-  }
+/* 背景声呐波纹动态光晕 */
+.hero-cyber::before {
+  content: "";
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, rgba(2, 132, 199, 0.05) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-sonar 8s infinite alternate ease-in-out;
+}
 
-  /* 按钮相关暗黑配色 */
-  .btn,
-  .btn-primary,
-  .btn-info,
-  .btn-success {
-    color: #fff !important;
-    border-color: transparent !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    transition: all 0.2s;
-    border-radius: var(--radius-main);
-  }
+@keyframes pulse-sonar {
+  0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
+  100% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+}
 
-  .btn-outline-primary,
-  .btn-outline-info,
-  .btn-outline-success,
-  .btn-outline-secondary {
-    color: #ececec !important;
-    border-color: #444 !important;
-    background: transparent !important;
-    transition: all 0.2s;
-    border-radius: var(--radius-main);
-  }
+.badge-cyber-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(13, 22, 41, 0.8);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: var(--primary-cyan);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  margin-bottom: 1.75rem;
+}
 
-  .btn-light {
-    background: #232528 !important;
-    color: #ececec !important;
-    border-color: #444 !important;
-    transition: all 0.2s;
-    border-radius: var(--radius-main);
-  }
+.beacon-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-emerald);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-emerald);
+  animation: blink 2s infinite ease-in-out;
+}
 
-  /* 注册、登录、立即使用按钮暗黑交互动效  */
-  .btn-primary:hover,
-  .btn-primary:active,
-  .btn-primary:focus {
-    background: #2567d8 !important;
-    color: #fff !important;
-    border-color: #2567d8 !important;
-    box-shadow: 0 4px 16px rgba(37,103,216,0.18) !important;
-  }
-  .btn-outline-primary:hover,
-  .btn-outline-primary:active,
-  .btn-outline-primary:focus {
-    background: rgba(55,132,255,0.13) !important;
-    color: #fff !important;
-    border-color: #3784ff !important;
-    box-shadow: 0 4px 16px rgba(55,132,255,0.18) !important;
-  }
-  .btn-light:hover,
-  .btn-light:active,
-  .btn-light:focus {
-    background: rgba(55,132,255,0.13) !important;
-    color: #fff !important;
-    border-color: #3784ff !important;
-    box-shadow: 0 4px 16px rgba(55,132,255,0.15) !important;
-  }
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
 
-  /* ===========================
-     导航栏/侧边栏/页脚样式
-     =========================== */
-  .navbar,
-  .navbar-light {
-    background: #232528 !important;
-    color: #ececec !important;
-  }
+/* 核心特性胶囊标签群 */
+.hero-feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
 
-  /* 导航菜单基础样式及点击动效 */
-  .navbar-light .nav-link {
-    transition: all 0.18s;
-    border-radius: var(--radius-main);
-  }
-  .navbar-light .nav-link:hover,
-  .navbar-light .nav-link:focus,
-  .navbar-light .nav-link:active {
-    color: #3784ff !important;
-    background-color: rgba(55,132,255,0.13);
-    text-decoration: none;
-  }
+.hero-tag {
+  background: rgba(11, 17, 32, 0.7);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 
-  /* 移动端菜单按钮可见性增强 */
-  .navbar-toggler .navbar-toggler-icon {
-    background-image: url('../images/menu-dark.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: none;
-    opacity: 1;
-  }
+.hero-tag i {
+  color: var(--primary-cyan);
+}
 
-  .offcanvas,
-  .offcanvas-header,
-  .offcanvas-body {
-    background: #232528 !important;
-    color: #ececec !important;
-  }
+/* ===========================
+   实时网络拓扑/监控仪表盘（Hero 嵌入卡片）
+   =========================== */
+.radar-panel {
+  background: rgba(11, 17, 32, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(0, 242, 254, 0.2);
+  margin-top: 3.5rem;
+  position: relative;
+  z-index: 1;
+}
 
-  /* 链接和导航色 */
-  a,
-  .nav-link {
-    color: #93b4ef !important;
-  }
-  a.btn-primary,
-  a.btn-success,
-  a.btn-info {
-    color: #fff !important;
-  }
-  a.btn-outline-primary,
-  a.btn-outline-info,
-  a.btn-outline-success,
-  a.btn-outline-secondary {
-    color: #ececec !important;
-    border-color: #444 !important;
-  }
+.radar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
 
-  /* 页脚样式 */
-  .footer,
-  footer.bg-dark {
-    background: var(--footer-bg) !important;
-    color: #ececec !important;
-  }
+.node-item {
+  background: rgba(13, 22, 41, 0.6);
+  border: 1px solid rgba(0, 242, 254, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  /* 引用脚注样式 */
-  .blockquote-footer {
-    color: #93b4ef !important;
-  }
+.node-item:hover {
+  background: rgba(18, 30, 56, 0.8);
+  border-color: rgba(0, 242, 254, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 242, 254, 0.12);
+}
 
-  /* ===========================
-     Banner 区块暗黑样式
-     =========================== */
-  section.bg-primary.text-white {
-    background: #18181b !important;
-    color: #ececec !important;
-  }
-  section.bg-primary.text-white h1,
-  section.bg-primary.text-white h2,
-  section.bg-primary.text-white p.lead {
-    color: #fff !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  }
-  section.bg-primary.text-white .btn-light {
-    background: #232528 !important;
-    color: #ececec !important;
-    border: 1px solid #444 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  }
+.node-ping {
+  color: var(--accent-emerald);
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
 
-  /* ===========================
-     产品特性区块暗黑样式
-     =========================== */
-  #features .card {
-    background: #232528 !important;
-    color: #ececec !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
-    border: 1px solid #222 !important;
-  }
-  #features h2,
-  #features h5,
-  #features .card-title {
-    color: #fff !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  }
-  #features .text-secondary {
-    color: #93b4ef !important;
-  }
-  #features img {
-    filter: brightness(1.1) drop-shadow(0 2px 6px #111);
-  }
+/* ===========================
+   深海机能卡片通用样式（Card System）
+   =========================== */
+.cyber-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
 
-  /* ===========================
-     价格区块暗黑样式
-     =========================== */
-  #pricing {
-    background: #181a1b !important;
-  }
-  #pricing .card {
-    background: #232528 !important;
-    color: #ececec !important;
-    border: 1px solid #222 !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
-  }
-  #pricing h2,
-  #pricing .card-title {
-    color: #fff !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  }
-  #pricing .text-secondary {
-    color: #93b4ef !important;
-  }
-  #pricing .display-5 {
-    color: #93b4ef !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  }
-  #pricing .btn {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  }
+.cyber-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-  /* 卡片1 按钮（蓝色） */
-  .card.border-primary .btn-outline-primary:hover,
-  .card.border-primary .btn-outline-primary:active,
-  .card.border-primary .btn-outline-primary:focus {
-    background: rgba(55,132,255,0.13) !important;
-    color: #fff !important;
-    border-color: #3784ff !important;
-    box-shadow: 0 4px 16px rgba(55,132,255,0.18) !important;
-  }
-  /* 卡片2 按钮（绿色实心） */
-  .card.border-success .btn-success:hover,
-  .card.border-success .btn-success:active,
-  .card.border-success .btn-success:focus {
-    background: rgba(76,217,100,0.13) !important;
-    color: #fff !important;
-    border-color: #4cd964 !important;
-    box-shadow: 0 4px 16px rgba(76,217,100,0.15) !important;
-  }
-  /* 卡片3 按钮（青色） */
-  .card.border-info .btn-outline-info:hover,
-  .card.border-info .btn-outline-info:active,
-  .card.border-info .btn-outline-info:focus {
-    background: rgba(91,192,222,0.13) !important;
-    color: #fff !important;
-    border-color: #5bc0de !important;
-    box-shadow: 0 4px 16px rgba(91,192,222,0.16) !important;
-  }
+.cyber-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 242, 254, 0.18);
+}
 
-  /* ===========================
-     用户评价区块暗黑样式
-     =========================== */
-  #testimonials {
-    background: #232528 !important;
+.cyber-card:hover::before {
+  opacity: 1;
+}
+
+/* 特性图标底座 */
+.icon-box-cyber {
+  width: 68px;
+  height: 68px;
+  border-radius: 1rem;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  transition: all 0.3s ease;
+}
+
+.cyber-card:hover .icon-box-cyber {
+  background: rgba(0, 242, 254, 0.18);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+  transform: scale(1.08) rotate(2deg);
+}
+
+/* ===========================
+   价格套餐卡片（深海旗舰对比）
+   =========================== */
+.pricing-cyber-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.pricing-cyber-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.25);
+}
+
+/* 旗舰推荐高亮卡片（VIP2） */
+.pricing-cyber-card.recommended-plan {
+  background: linear-gradient(180deg, rgba(14, 30, 58, 0.85) 0%, rgba(8, 17, 34, 0.95) 100%);
+  border: 2px solid var(--primary-cyan);
+  box-shadow: 0 0 35px rgba(0, 242, 254, 0.3), 0 20px 50px rgba(0, 0, 0, 0.7);
+  transform: scale(1.04);
+}
+
+.pricing-cyber-card.recommended-plan:hover {
+  transform: scale(1.06) translateY(-8px);
+  box-shadow: 0 0 50px rgba(0, 242, 254, 0.5), 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* 推荐专属流光徽章 */
+.badge-recommend-cyber {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: linear-gradient(135deg, #00F2FE 0%, #0284C7 100%);
+  color: #06080F;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.feature-list-cyber {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  text-align: left;
+}
+
+.feature-list-cyber li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.feature-list-cyber li i {
+  color: var(--primary-cyan);
+  font-size: 1.05rem;
+}
+
+/* ===========================
+   用户评价与真实反馈（航海日志口碑）
+   =========================== */
+.testimonial-cyber-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all 0.25s ease;
+  height: 100%;
+}
+
+.testimonial-cyber-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+.quote-icon {
+  font-size: 2rem;
+  color: rgba(0, 242, 254, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.user-avatar-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.avatar-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2) 0%, rgba(2, 132, 199, 0.4) 100%);
+  border: 1px solid var(--primary-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-cyan);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ===========================
+   常见疑问手风琴（FAQ Accordion）
+   =========================== */
+.faq-cyber-accordion .accordion-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg) !important;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.faq-cyber-accordion .accordion-item:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.faq-cyber-accordion .accordion-button {
+  background: rgba(13, 22, 41, 0.8);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: none;
+}
+
+.faq-cyber-accordion .accordion-button:not(.collapsed) {
+  background: rgba(18, 30, 56, 0.95);
+  color: var(--primary-cyan);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.08);
+}
+
+.faq-cyber-accordion .accordion-button::after {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.faq-cyber-accordion .accordion-body {
+  background: rgba(10, 16, 30, 0.85);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  padding: 1.25rem 1.5rem;
+}
+
+/* ===========================
+   页脚与版权区域
+   =========================== */
+.footer-cyber {
+  background: #04060A;
+  border-top: 1px solid var(--border-subtle);
+  padding: 3.5rem 0 2.5rem;
+  color: var(--text-muted);
+}
+
+.footer-cyber a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-cyber a:hover {
+  color: var(--primary-cyan);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+}
+
+/* ===========================
+   响应式微调
+   =========================== */
+@media (max-width: 991.98px) {
+  .pricing-cyber-card.recommended-plan {
+    transform: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
-  #testimonials .card {
-    background: #232528 !important;
-    color: #ececec !important;
-    border: 1px solid #222 !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+  .pricing-cyber-card.recommended-plan:hover {
+    transform: translateY(-6px);
   }
-  #testimonials h2 {
-    color: #fff !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  }
-  #testimonials .text-secondary {
-    color: #93b4ef !important;
-  }
-  #testimonials .blockquote-footer {
-    color: #93b4ef !important;
-    opacity: 0.85;
+  .hero-cyber {
+    padding: 4rem 0 3rem;
   }
 }
