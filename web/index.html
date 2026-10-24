@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>正在打开页面…</title>
+  <style>
+    :root{
+      /* Light */
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --shadow: 0 10px 30px rgba(17,24,39,.06);
+      --btnBg:#111827;
+      --btnText:#ffffff;
+      --btnBorder:transparent;
+      --spinTrack:#e5e7eb;
+      --spinHead:#111827;
+      --error:#d97706;
+
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        /* Dark */
+        --bg:#0b0f16;
+        --card:#0f1623;
+        --text:rgba(255,255,255,.92);
+        --muted:rgba(255,255,255,.66);
+        --border:rgba(255,255,255,.12);
+        --shadow: 0 18px 50px rgba(0,0,0,.45);
+
+        /* Button (dark): subtle, not glaring */
+        --btnBg: rgba(255,255,255,.08);
+        --btnText: rgba(255,255,255,.92);
+        --btnBorder: rgba(255,255,255,.16);
+        --spinTrack:rgba(255,255,255,.16);
+        --spinHead:#ffffff;
+        --error:#fbbf24;
+
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:min(720px, 100%);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:26px 22px;
+      text-align:center;
+    }
+    h1{
+      font-size:22px;
+      margin:10px 0 6px;
+      font-weight:650;
+      letter-spacing:.2px;
+    }
+    p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      overflow-wrap:anywhere;
+    }
+    .noscript{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+    }
+    .spinner{
+      width:30px;
+      height:30px;
+      margin:0 auto;
+      border:3px solid var(--spinTrack);
+      border-top-color:var(--spinHead);
+      border-radius:50%;
+      animation:spin .9s linear infinite;
+    }
+    .error-icon{
+      width:30px;
+      height:30px;
+      margin:0 auto;
+      border:2px solid var(--error);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--error);
+      font-size:20px;
+      font-weight:700;
+      line-height:1;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .actions{
+      margin-top:18px;
+      display:none;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .btn{
+      appearance:none;
+      -webkit-appearance:none;
+      border:1px solid var(--btnBorder);
+      border-radius:14px;
+      padding:12px 18px;
+      font-size:14px;
+      cursor:pointer;
+      user-select:none;
+      min-width: 160px;
+
+      background:var(--btnBg);
+      color:var(--btnText);
+      text-decoration:none;
+      overflow-wrap:anywhere;
+
+      transition: transform .12s ease, opacity .12s ease, background-color .12s ease, border-color .12s ease, box-shadow .12s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,.10);
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      opacity:.98;
+    }
+    .btn:active{
+      transform: translateY(0px);
+      opacity:.95;
+      box-shadow: 0 4px 12px rgba(0,0,0,.10);
+    }
+    .btn:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(110,168,255,.20), 0 8px 20px rgba(0,0,0,.10);
+      border-color: rgba(110,168,255,.45);
+    }
+    @media (prefers-color-scheme: dark){
+      .btn{
+        box-shadow: 0 10px 26px rgba(0,0,0,.35);
+        backdrop-filter: blur(6px);
+      }
+      .btn:hover{
+        background: rgba(255,255,255,.11);
+        border-color: rgba(255,255,255,.22);
+      }
+      .btn:active{
+        background: rgba(255,255,255,.07);
+      }
+    }
+    @media (max-width:480px){
+      body{
+        padding:16px;
+      }
+      .card{
+        padding:24px 16px;
+        border-radius:18px;
+      }
+      h1{
+        font-size:20px;
+        margin-top:4px;
+      }
+      .actions{
+        flex-direction:column;
+      }
+      .btn{
+        width:100%;
+        min-width:0;
+      }
+    }
+    @supports (min-height:100dvh){
+      body{min-height:100dvh}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="spinner" id="spinner" aria-hidden="true"></div>
+    <h1 id="title">正在打开主线路…</h1>
+    <p id="desc" aria-live="polite">
+      <span id="countdownText">即将自动跳转。</span><br />
+      <span>主线路不可用时，请选择备用线路。</span>
+    </p>
+    
+    <div class="actions" id="actions"></div>
+
+    <noscript>
+      <div class="noscript">当前浏览器未启用 JavaScript，无法显示访问线路。请启用 JavaScript 后重试。</div>
+    </noscript>
+
+  </div>
+
+<script>
+(() => {
+  // 同源跳转入口；真实短链接仅配置在 Nginx 中，不写入前端源码。
+  const OUTLETS = [
+    { name: "主线路", url: "https://tiziy01.ladderaff.com/#/?code=ycC1d2kC" },
+    { name: "备用线路 1", url: "https://tiziy01.ladderaff.com/#/?code=ycC1d2kC" },
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const title = $("title");
+  const desc = $("desc");
+  const countdownText = $("countdownText");
+  const actions = $("actions");
+  const spinner = $("spinner");
+  const countdownSeconds = 3; // 倒计时秒数
+  let countdownTimer = null;
+
+  const buildTargetUrl = (url) => {
+    try {
+      if (typeof url !== "string" || !url.trim()) return null;
+      const parsed = new URL(url, location.origin);
+      // 允许本站同源（支持 HTTPS 及本地调试 HTTP），避免配置指向无效协议
+      if (parsed.origin !== location.origin && parsed.protocol !== "https:" && parsed.protocol !== "http:") return null;
+
+      return parsed.toString();
+    } catch {
+      return null;
+    }
+  };
+
+  const targets = OUTLETS.map(({ name, url }, index) => ({
+    name: typeof name === "string" && name.trim() ? name.trim() : `线路 ${index + 1}`,
+    url: buildTargetUrl(url),
+  })).filter(({ url }) => Boolean(url));
+
+  const stopCountdown = () => {
+    if (countdownTimer) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+    }
+  };
+
+  const showOutlets = () => {
+    actions.textContent = "";
+
+    targets.forEach(({ name, url }) => {
+      const link = document.createElement("a");
+      link.className = "btn";
+      link.href = url;
+      link.textContent = name;
+      link.addEventListener("click", stopCountdown);
+      actions.appendChild(link);
+    });
+    actions.style.display = "flex";
+  };
+
+  const showConfigError = () => {
+    document.title = "页面暂时不可用";
+    title.textContent = "页面暂时不可用";
+    desc.textContent = "访问线路配置异常，请稍后重试。";
+    spinner.className = "error-icon";
+    spinner.textContent = "!";
+    actions.style.display = "none";
+  };
+
+  if (!targets.length) {
+    showConfigError();
+    return;
+  }
+
+  showOutlets();
+  let remaining = countdownSeconds;
+  document.title = "正在打开页面…";
+  title.textContent = `正在打开${targets[0].name}…`;
+  countdownText.textContent = `${remaining} 秒后自动跳转。`;
+
+  countdownTimer = setInterval(() => {
+    remaining -= 1;
+    if (remaining <= 0) {
+      stopCountdown();
+      location.assign(targets[0].url);
+      return;
+    }
+    countdownText.textContent = `${remaining} 秒后自动跳转。`;
+  }, 1000);
+
+})();
+</script>
+
+<!--
+  版本：v1.3（2026-07-23）
+  说明：
+    1. 默认倒计时 3 秒跳转首条线路，同时支持手动选择其他线路。
+    2. 每条线路可独立配置按钮名称，第一条线路为默认线路。
+    3. 真实短链接由 Nginx 管理，前端仅保留同源线路入口。
+    4. 移除跨域 HEAD/GET 探测，避免将浏览器策略问题误判为网络异常。
+    5. PC 端横向展示线路按钮，移动端自动切换为纵向全宽布局。
+    6. 倒计时期间加载动画在 PC 和移动端持续旋转，并适配明亮和暗黑模式。
+    7. 配置异常时将加载动画切换为警示图标。
+-->
+</body>
+</html>

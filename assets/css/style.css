@@ -1,0 +1,465 @@
+/* ==================================================
+   首页样式文件
+   说明：首页、登录页、注册页、产品页、价格页、FAQ页、用户评价页等全局样式
+   ================================================== */  
+
+/* ===========================
+   全局变量定义
+   =========================== */
+:root {
+  --main-bg: #fff;
+  --card-bg: #fff;
+  --text-main: #212529;
+  --text-secondary: #6c757d;
+  --primary: #0d6efd;
+  --success: #198754;
+  --info: #0dcaf0;
+  --footer-bg: #222;
+  --radius-main: 0.375rem;
+}
+
+/* ===========================
+   基础全局样式
+   =========================== */
+body {
+  background: var(--main-bg);
+  color: var(--text-main);
+}
+
+/* 全局区块样式 */
+section {
+  background: transparent;
+}
+
+/* 卡片样式 */
+.card {
+  background: var(--card-bg);
+}
+
+.card-body .display-5 {
+  margin-bottom: 1.5rem !important; 
+}
+
+/* 标题样式 */
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+/* 导航菜单基础样式及点击动效 */
+.navbar-light .nav-link {
+  transition: all 0.18s;
+  border-radius: var(--radius-main);
+}
+.navbar-light .nav-link:hover,
+.navbar-light .nav-link:focus,
+.navbar-light .nav-link:active {
+  color: #0d6efd;
+  background-color: #f0f7ff;
+  text-decoration: none;
+}
+
+/* 按钮基础动效（含注册、登录、立即使用等所有按钮） */
+.btn,
+.btn-primary,
+.btn-outline-primary,
+.btn-light {
+  transition: all 0.2s;
+  border-radius: var(--radius-main);
+}
+
+/* Pricing card */
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.badge-recommend {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ffc107;
+  color: #222;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.recommended {
+  transform: scale(1.02);
+  box-shadow: 0 1rem 2rem rgba(0, 128, 0, 0.08);
+}
+
+/* FAQ accordion */
+.faq-accordion .accordion-item {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 18px rgba(13,110,253,0.05);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.faq-accordion .accordion-button {
+  font-weight: 600;
+  background: #f5f8ff;
+}
+.faq-accordion .accordion-button:not(.collapsed) {
+  color: #0d6efd;
+  background: #e7f1ff;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+.faq-accordion .accordion-body {
+  background: #fff;
+  line-height: 1.7;
+  color: #495057;
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar-brand img[src$="logo.png"] {
+    content: url("../images/logo-dark.png");
+  }
+
+  .faq-accordion .accordion-button {
+    background: #2c2f33;
+    color: #d7e3ff;
+  }
+  .faq-accordion .accordion-button:not(.collapsed) {
+    background: #1f5bd8;
+    color: #fff;
+  }
+  .faq-accordion .accordion-body {
+    background: #1f2226;
+    color: #cfd5df;
+  }
+}
+
+/* ===========================
+   暗黑模式配色与样式
+   =========================== */
+@media (prefers-color-scheme: dark) {
+  /* 暗黑模式变量 */
+  :root {
+    --main-bg: #181a1b;
+    --card-bg: #232528;
+    --text-main: #ececec;
+    --text-secondary: #93b4ef;
+    --primary: #3784ff;
+    --success: #4cd964;
+    --info: #5bc0de;
+    --footer-bg: #151618;
+    --radius-main: 0.375rem;
+  }
+
+  body {
+    background: var(--main-bg);
+    color: var(--text-main);
+  }
+
+  /* 常用区块统一暗色背景/文字/边框/按钮 */
+  .card,
+  section,
+  .navbar,
+  .bg-light,
+  .navbar-light,
+  .shadow-sm,
+  .border-0,
+  .border-primary,
+  .border-success,
+  .border-info {
+    background: var(--card-bg) !important;
+    color: var(--text-main) !important;
+    border-color: #222 !important;
+  }
+
+  /* 文字色 */
+  .text-primary {
+    color: #3784ff !important;
+  }
+  .text-secondary {
+    color: var(--text-secondary) !important;
+  }
+  .text-success {
+    color: #4cd964 !important;
+  }
+  .text-info {
+    color: #5bc0de !important;
+  }
+
+  /* 标题统一高亮 */
+  .display-4,
+  .display-5,
+  .fw-bold,
+  h1,
+  h2,
+  h5,
+  h4,
+  h3 {
+    color: #ececec !important;
+  }
+
+  /* 主要色块 */
+  .bg-primary {
+    background: #232528 !important;
+    color: #ececec !important;
+  }
+
+  .bg-light {
+    background: #232528 !important;
+    color: #ececec !important;
+  }
+
+  /* 统一阴影与边框 */
+  .border-0 {
+    border: none !important;
+  }
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  }
+
+  /* 按钮相关暗黑配色 */
+  .btn,
+  .btn-primary,
+  .btn-info,
+  .btn-success {
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: all 0.2s;
+    border-radius: var(--radius-main);
+  }
+
+  .btn-outline-primary,
+  .btn-outline-info,
+  .btn-outline-success,
+  .btn-outline-secondary {
+    color: #ececec !important;
+    border-color: #444 !important;
+    background: transparent !important;
+    transition: all 0.2s;
+    border-radius: var(--radius-main);
+  }
+
+  .btn-light {
+    background: #232528 !important;
+    color: #ececec !important;
+    border-color: #444 !important;
+    transition: all 0.2s;
+    border-radius: var(--radius-main);
+  }
+
+  /* 注册、登录、立即使用按钮暗黑交互动效  */
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus {
+    background: #2567d8 !important;
+    color: #fff !important;
+    border-color: #2567d8 !important;
+    box-shadow: 0 4px 16px rgba(37,103,216,0.18) !important;
+  }
+  .btn-outline-primary:hover,
+  .btn-outline-primary:active,
+  .btn-outline-primary:focus {
+    background: rgba(55,132,255,0.13) !important;
+    color: #fff !important;
+    border-color: #3784ff !important;
+    box-shadow: 0 4px 16px rgba(55,132,255,0.18) !important;
+  }
+  .btn-light:hover,
+  .btn-light:active,
+  .btn-light:focus {
+    background: rgba(55,132,255,0.13) !important;
+    color: #fff !important;
+    border-color: #3784ff !important;
+    box-shadow: 0 4px 16px rgba(55,132,255,0.15) !important;
+  }
+
+  /* ===========================
+     导航栏/侧边栏/页脚样式
+     =========================== */
+  .navbar,
+  .navbar-light {
+    background: #232528 !important;
+    color: #ececec !important;
+  }
+
+  /* 导航菜单基础样式及点击动效 */
+  .navbar-light .nav-link {
+    transition: all 0.18s;
+    border-radius: var(--radius-main);
+  }
+  .navbar-light .nav-link:hover,
+  .navbar-light .nav-link:focus,
+  .navbar-light .nav-link:active {
+    color: #3784ff !important;
+    background-color: rgba(55,132,255,0.13);
+    text-decoration: none;
+  }
+
+  /* 移动端菜单按钮可见性增强 */
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: url('../images/menu-dark.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: none;
+    opacity: 1;
+  }
+
+  .offcanvas,
+  .offcanvas-header,
+  .offcanvas-body {
+    background: #232528 !important;
+    color: #ececec !important;
+  }
+
+  /* 链接和导航色 */
+  a,
+  .nav-link {
+    color: #93b4ef !important;
+  }
+  a.btn-primary,
+  a.btn-success,
+  a.btn-info {
+    color: #fff !important;
+  }
+  a.btn-outline-primary,
+  a.btn-outline-info,
+  a.btn-outline-success,
+  a.btn-outline-secondary {
+    color: #ececec !important;
+    border-color: #444 !important;
+  }
+
+  /* 页脚样式 */
+  .footer,
+  footer.bg-dark {
+    background: var(--footer-bg) !important;
+    color: #ececec !important;
+  }
+
+  /* 引用脚注样式 */
+  .blockquote-footer {
+    color: #93b4ef !important;
+  }
+
+  /* ===========================
+     Banner 区块暗黑样式
+     =========================== */
+  section.bg-primary.text-white {
+    background: #18181b !important;
+    color: #ececec !important;
+  }
+  section.bg-primary.text-white h1,
+  section.bg-primary.text-white h2,
+  section.bg-primary.text-white p.lead {
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+  section.bg-primary.text-white .btn-light {
+    background: #232528 !important;
+    color: #ececec !important;
+    border: 1px solid #444 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+
+  /* ===========================
+     产品特性区块暗黑样式
+     =========================== */
+  #features .card {
+    background: #232528 !important;
+    color: #ececec !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+    border: 1px solid #222 !important;
+  }
+  #features h2,
+  #features h5,
+  #features .card-title {
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  #features .text-secondary {
+    color: #93b4ef !important;
+  }
+  #features img {
+    filter: brightness(1.1) drop-shadow(0 2px 6px #111);
+  }
+
+  /* ===========================
+     价格区块暗黑样式
+     =========================== */
+  #pricing {
+    background: #181a1b !important;
+  }
+  #pricing .card {
+    background: #232528 !important;
+    color: #ececec !important;
+    border: 1px solid #222 !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+  }
+  #pricing h2,
+  #pricing .card-title {
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  #pricing .text-secondary {
+    color: #93b4ef !important;
+  }
+  #pricing .display-5 {
+    color: #93b4ef !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  }
+  #pricing .btn {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  }
+
+  /* 卡片1 按钮（蓝色） */
+  .card.border-primary .btn-outline-primary:hover,
+  .card.border-primary .btn-outline-primary:active,
+  .card.border-primary .btn-outline-primary:focus {
+    background: rgba(55,132,255,0.13) !important;
+    color: #fff !important;
+    border-color: #3784ff !important;
+    box-shadow: 0 4px 16px rgba(55,132,255,0.18) !important;
+  }
+  /* 卡片2 按钮（绿色实心） */
+  .card.border-success .btn-success:hover,
+  .card.border-success .btn-success:active,
+  .card.border-success .btn-success:focus {
+    background: rgba(76,217,100,0.13) !important;
+    color: #fff !important;
+    border-color: #4cd964 !important;
+    box-shadow: 0 4px 16px rgba(76,217,100,0.15) !important;
+  }
+  /* 卡片3 按钮（青色） */
+  .card.border-info .btn-outline-info:hover,
+  .card.border-info .btn-outline-info:active,
+  .card.border-info .btn-outline-info:focus {
+    background: rgba(91,192,222,0.13) !important;
+    color: #fff !important;
+    border-color: #5bc0de !important;
+    box-shadow: 0 4px 16px rgba(91,192,222,0.16) !important;
+  }
+
+  /* ===========================
+     用户评价区块暗黑样式
+     =========================== */
+  #testimonials {
+    background: #232528 !important;
+  }
+  #testimonials .card {
+    background: #232528 !important;
+    color: #ececec !important;
+    border: 1px solid #222 !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+  }
+  #testimonials h2 {
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  #testimonials .text-secondary {
+    color: #93b4ef !important;
+  }
+  #testimonials .blockquote-footer {
+    color: #93b4ef !important;
+    opacity: 0.85;
+  }
+}

@@ -1,0 +1,137 @@
+/* ==================================================
+   页面样式文件
+   说明：定义页面布局及基础样式，支持暗黑模式
+   ================================================== */ 
+
+:root {
+  --page-max: 880px;
+  --page-text: #212529;
+  --page-muted: #6c757d;
+  --page-link: #0d6efd;
+  --page-surface: #ffffff;
+  --page-border: #e6edf5;
+  --page-shadow: 0 12px 32px rgba(13,110,253,0.08);
+}
+
+body {
+  font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef2f6 100%);
+  color: var(--page-text);
+}
+
+.page-wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+.page-card {
+  background: var(--page-surface);
+  border-radius: 18px;
+  border: 1px solid var(--page-border);
+  box-shadow: var(--page-shadow);
+}
+
+.page-title {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #0d6efd;
+}
+
+.page-meta {
+  color: var(--page-muted);
+}
+
+.page-divider {
+  height: 1px;
+  background: var(--page-border);
+}
+
+.page-footer a {
+  color: var(--page-link);
+  text-decoration: none;
+}
+
+.page-footer a:hover {
+  text-decoration: underline;
+}
+/* ==================================================
+   暗黑模式样式
+   ================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-text: #e8eaed;
+    --page-muted: #93b4ef;
+    --page-link: #6ea8fe;
+    --page-surface: #232528;
+    --page-border: #3a3d42;
+    --page-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  }
+
+  .navbar-brand img[src$="logo.png"] {
+    content: url("../images/logo-dark.png");
+  }
+
+  body {
+    background: linear-gradient(180deg, #181a1b 0%, #1a1c1e 100%);
+    color: var(--page-text);
+  }
+
+  .page-card {
+    background: var(--page-surface);
+    border-color: var(--page-border);
+  }
+
+  .page-title {
+    color: #6ea8fe;
+  }
+
+  .page-meta {
+    color: var(--page-muted);
+  }
+
+  .page-divider {
+    background: var(--page-border);
+  }
+
+  .page-footer a {
+    color: var(--page-link);
+  }
+
+  /* 链接颜色 */
+  a {
+    color: var(--page-link);
+  }
+
+  a:hover {
+    color: #8bb9fe;
+  }
+
+  /* 按钮样式 */
+  .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+  }
+
+  /* 导航栏暗黑模式 */
+  .navbar {
+    background-color: #232528 !important;
+    border-bottom: 1px solid var(--page-border);
+  }
+
+  .btn-outline-primary {
+    color: #6ea8fe;
+    border-color: #6ea8fe;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+  }
+}

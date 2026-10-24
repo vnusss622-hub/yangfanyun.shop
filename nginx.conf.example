@@ -1,0 +1,46 @@
+# Nginx 配置文件示例
+# 适用于 yangfanyun.shop / yfcloud.org 落地页部署
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name yangfanyun.shop www.yangfanyun.shop yfcloud.org www.yfcloud.org;
+
+    # 强制跳转 HTTPS（生产环境建议开启）
+    # return 301 https://$host$request_uri;
+
+    root /www/yangfanyun.shop; # 修改为实际网站根目录
+    index index.html;
+
+    # 启用 gzip 压缩
+    gzip on;
+    gzip_min_length 1k;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
+
+    # 静态资源缓存控制
+    location ~* \.(ico|css|js|gif|jpe?g|png|webp|svg|woff2?|eot|ttf|otf)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        access_log off;
+    }
+
+    # 主线路与备用线路跳转
+    location = /web/main {
+        return 302 https://tiziy01.ladderaff.com/#/?code=ycC1d2kC;
+    }
+
+    location = /web/backup {
+        return 302 https://tiziy01.ladderaff.com/#/?code=ycC1d2kC;
+    }
+
+    # /web 路径访问
+    location /web {
+        try_files $uri $uri/ /web/index.html;
+    }
+
+    # 其它页面与 SPA 路由适配
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
